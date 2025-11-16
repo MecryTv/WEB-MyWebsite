@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Imprint from './components/Imprint';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LoadingScreen from './components/LoadingScreen';
+import WaveDivider from './components/WaveDivider';
 
 function ScrollToSection() {
     const location = useLocation();
@@ -43,17 +44,29 @@ function MainContent() {
                         <Home />
                     </section>
 
+                    {/* Welle: Schwarz (Home) → Grau (About) */}
+                    <WaveDivider topColor="#0A0A0A" bottomColor="#1E1E1E" />
+
                     <section id="about">
                         <About />
                     </section>
+
+                    {/* Welle: Grau (About) → Schwarz (Skills) */}
+                    <WaveDivider topColor="#1E1E1E" bottomColor="#0A0A0A" />
 
                     <section id="skills">
                         <Skills />
                     </section>
 
+                    {/* Welle: Schwarz (Skills) → Grau (CodeZero) */}
+                    <WaveDivider topColor="#0A0A0A" bottomColor="#1E1E1E" />
+
                     <section id="codezero">
                         <CodeZero />
                     </section>
+
+                    {/* Welle: Grau (CodeZero) → Schwarz (Contact) */}
+                    <WaveDivider topColor="#1E1E1E" bottomColor="#0A0A0A" />
 
                     <section id="contact">
                         <Contact />
