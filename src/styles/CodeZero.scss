@@ -1,0 +1,77 @@
+.codezero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--dunkelgrau) 0%, var(--sehr-dunkel) 100%);
+  color: var(--weiss);
+  padding: 2rem;
+
+  .codezero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3rem;
+
+    .codezero-title {
+      font-size: 4rem;
+      font-weight: 900;
+      margin-bottom: 2rem;
+      background: linear-gradient(to right, var(--hellblau), var(--akzent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 40px rgba(0, 217, 255, 0.4));
+      letter-spacing: -2px;
+    }
+
+    .codezero-description {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: var(--grau);
+      margin-bottom: 3rem;
+
+      p {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .codezero-button {
+      padding: 1rem 3rem;
+      background: linear-gradient(to right, var(--hellblau), var(--akzent));
+      color: var(--sehr-dunkel);
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(0, 217, 255, 0.6);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .codezero-section {
+    .codezero-content {
+      padding: 2rem;
+
+      .codezero-title {
+        font-size: 2.5rem;
+      }
+
+      .codezero-description {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

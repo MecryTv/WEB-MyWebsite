@@ -1,0 +1,103 @@
+.skills-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--sehr-dunkel) 0%, var(--dunkelgrau) 100%);
+  color: var(--weiss);
+  padding: 2rem;
+
+  .skills-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 3rem;
+
+    .skills-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(to right, var(--hellblau), var(--akzent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.3));
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 2rem;
+
+      .skill-item {
+        background: rgba(30, 30, 30, 0.5);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 217, 255, 0.1);
+        transition: all 0.3s ease;
+
+        &:hover {
+          border-color: var(--hellblau);
+          box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+          transform: translateY(-5px);
+        }
+
+        .skill-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          .skill-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+          }
+
+          .skill-percentage {
+            font-size: 1.25rem;
+            color: var(--hellblau);
+            font-weight: 700;
+          }
+        }
+
+        .skill-bar-container {
+          width: 100%;
+          height: 12px;
+          background: var(--dunkelgrau);
+          border-radius: 999px;
+          overflow: hidden;
+
+          .skill-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--hellblau), var(--akzent));
+            border-radius: 999px;
+            transition: width 1s ease-out;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    .skills-content {
+      padding: 2rem;
+
+      .skills-title {
+        font-size: 2.5rem;
+      }
+
+      .skills-grid .skill-item .skill-header {
+        .skill-name {
+          font-size: 1.25rem;
+        }
+
+        .skill-percentage {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}

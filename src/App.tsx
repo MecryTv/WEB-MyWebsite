@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -10,6 +10,61 @@ import Contact from './components/Contact';
 import Imprint from './components/Imprint';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import LoadingScreen from './components/LoadingScreen';
+
+function ScrollToSection() {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        const sectionId = location.pathname.slice(1);
+        const element = document.getElementById(sectionId);
+
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [location]);
+
+    return null;
+}
+
+function MainContent() {
+    return (
+        <>
+            <ScrollToSection />
+            <div className="min-h-screen bg-gray-50 flex flex-col">
+                <Header />
+
+                <main className="flex-grow">
+                    <section id="home">
+                        <Home />
+                    </section>
+
+                    <section id="about">
+                        <About />
+                    </section>
+
+                    <section id="skills">
+                        <Skills />
+                    </section>
+
+                    <section id="codezero">
+                        <CodeZero />
+                    </section>
+
+                    <section id="contact">
+                        <Contact />
+                    </section>
+                </main>
+
+                <Footer />
+            </div>
+        </>
+    );
+}
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -28,23 +83,32 @@ function App() {
 
     return (
         <Router>
-            <div className="min-h-screen bg-gray-50 flex flex-col">
-                <Header />
+            <Routes>
+                <Route path="/" element={<MainContent />} />
+                <Route path="/about" element={<MainContent />} />
+                <Route path="/skills" element={<MainContent />} />
+                <Route path="/codezero" element={<MainContent />} />
+                <Route path="/contact" element={<MainContent />} />
 
-                <main className="flex-grow">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/skills" element={<Skills />} />
-                        <Route path="/codezero" element={<CodeZero />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/imprint" element={<Imprint />} />
-                        <Route path="/privacy" element={<PrivacyPolicy />} />
-                    </Routes>
-                </main>
-
-                <Footer />
-            </div>
+                <Route path="/imprint" element={
+                    <div className="min-h-screen bg-gray-50 flex flex-col">
+                        <Header />
+                        <main className="flex-grow">
+                            <Imprint />
+                        </main>
+                        <Footer />
+                    </div>
+                } />
+                <Route path="/privacy" element={
+                    <div className="min-h-screen bg-gray-50 flex flex-col">
+                        <Header />
+                        <main className="flex-grow">
+                            <PrivacyPolicy />
+                        </main>
+                        <Footer />
+                    </div>
+                } />
+            </Routes>
         </Router>
     );
 }

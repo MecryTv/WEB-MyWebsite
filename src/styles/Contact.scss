@@ -1,0 +1,122 @@
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--sehr-dunkel) 0%, #000000 100%);
+  color: var(--weiss);
+  padding: 2rem;
+
+  .contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 3rem;
+
+    .contact-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(to right, var(--hellblau), var(--akzent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.3));
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-size: 1.125rem;
+          margin-bottom: 0.5rem;
+          color: var(--grau);
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 1rem;
+          background: rgba(30, 30, 30, 0.8);
+          border: 1px solid rgba(139, 139, 139, 0.3);
+          border-radius: 8px;
+          color: var(--weiss);
+          font-size: 1rem;
+          transition: all 0.3s ease;
+
+          &:focus {
+            outline: none;
+            border-color: var(--hellblau);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+          }
+
+          &::placeholder {
+            color: rgba(139, 139, 139, 0.6);
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 150px;
+        }
+      }
+
+      .submit-button {
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(to right, var(--hellblau), var(--akzent));
+        color: var(--sehr-dunkel);
+        font-size: 1.125rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    .contact-content {
+      padding: 2rem;
+
+      .contact-title {
+        font-size: 2.5rem;
+      }
+
+      .contact-form {
+        gap: 1.5rem;
+
+        .form-group {
+          label {
+            font-size: 1rem;
+          }
+
+          input,
+          textarea {
+            padding: 0.875rem;
+          }
+        }
+      }
+    }
+  }
+}
