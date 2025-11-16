@@ -1,77 +1,62 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import "../styles/Header.scss";
 
 const Header: React.FC = () => {
-    return (
-        <header className="bg-white shadow-md sticky top-0 z-50">
-            <nav className="container mx-auto px-4 py-4">
-                <div className="flex items-center justify-between">
-                    <Link to="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700">
-                        MeinPortfolio
-                    </Link>
+    const activeLinkClassName = "active-nav-link";
 
-                    <div className="flex gap-6">
-                        <NavLink
-                            to="/"
-                            className={({ isActive }) =>
-                                `font-medium transition-colors ${
-                                    isActive
-                                        ? 'text-blue-600'
-                                        : 'text-gray-700 hover:text-blue-600'
-                                }`
-                            }
-                        >
-                            Home
-                        </NavLink>
-                        <NavLink
-                            to="/about"
-                            className={({ isActive }) =>
-                                `font-medium transition-colors ${
-                                    isActive
-                                        ? 'text-blue-600'
-                                        : 'text-gray-700 hover:text-blue-600'
-                                }`
-                            }
-                        >
-                            About
-                        </NavLink>
-                        <NavLink
-                            to="/skills"
-                            className={({ isActive }) =>
-                                `font-medium transition-colors ${
-                                    isActive
-                                        ? 'text-blue-600'
-                                        : 'text-gray-700 hover:text-blue-600'
-                                }`
-                            }
-                        >
-                            Skills
-                        </NavLink>
-                        <NavLink
-                            to="/codezero"
-                            className={({ isActive }) =>
-                                `font-medium transition-colors ${
-                                    isActive
-                                        ? 'text-blue-600'
-                                        : 'text-gray-700 hover:text-blue-600'
-                                }`
-                            }
-                        >
-                            Code0
-                        </NavLink>
-                        <NavLink
-                            to="/contact"
-                            className={({ isActive }) =>
-                                `font-medium transition-colors ${
-                                    isActive
-                                        ? 'text-blue-600'
-                                        : 'text-gray-700 hover:text-blue-600'
-                                }`
-                            }
-                        >
-                            Contact
-                        </NavLink>
-                    </div>
+    return (
+        <header className="main-header">
+            <nav className="header-nav">
+                <Link
+                    to="/"
+                    className="logo-link"
+                >
+                    MecryTv Portfolio
+                </Link>
+
+                <div className="nav-links">
+                    {/* NavLink setzt die 'active-nav-link' Klasse, wenn der Pfad übereinstimmt */}
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) =>
+                            `nav-link ${isActive ? activeLinkClassName : ""}`
+                        }
+                    >
+                        Home
+                    </NavLink>
+                    <NavLink
+                        to="/about"
+                        className={({ isActive }) =>
+                            `nav-link ${isActive ? activeLinkClassName : ""}`
+                        }
+                    >
+                        About
+                    </NavLink>
+                    <NavLink
+                        to="/skills"
+                        className={({ isActive }) =>
+                            `nav-link ${isActive ? activeLinkClassName : ""}`
+                        }
+                    >
+                        Skills
+                    </NavLink>
+                    <NavLink
+                        to="/codezero"
+                        className={({ isActive }) =>
+                            `nav-link ${isActive ? activeLinkClassName : ""}`
+                        }
+                    >
+                        Code0
+                    </NavLink>
+                    <NavLink
+                        to="/contact"
+                        className={({ isActive }) =>
+                            `nav-link ${isActive ? activeLinkClassName : ""}`
+                        }
+                    >
+                        Contact
+                    </NavLink>
                 </div>
             </nav>
         </header>

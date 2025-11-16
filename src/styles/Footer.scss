@@ -1,0 +1,69 @@
+// === SASS-Variablen ===
+$footer-bg: #2d3748; // entspricht bg-gray-800
+$text-color: #ff0000; // entspricht text-white
+$hover-color: #63b3ed; // entspricht hover:text-blue-400
+$breakpoint-md: 768px;
+
+.app-footer {
+  // Entspricht bg-gray-800 text-white mt-auto
+  background-color: $footer-bg;
+  color: $text-color;
+  margin-top: auto; // Stellt sicher, dass der Footer am unteren Rand des Viewports bleibt
+}
+
+.footer-container {
+  // Entspricht container mx-auto px-4 py-6
+  max-width: 100%; // "container" in Tailwind hat oft max-width, hier lassen wir es flexibel
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; // px-4 (16px)
+  padding-right: 1rem;
+  padding-top: 1.5rem; // py-6 (24px)
+  padding-bottom: 1.5rem;
+}
+
+.footer-content {
+  // Entspricht flex flex-col md:flex-row justify-between items-center gap-4
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; // gap-4
+
+  @media (min-width: $breakpoint-md) {
+    // Entspricht md:flex-row
+    flex-direction: row;
+  }
+}
+
+.copyright-area {
+  // Entspricht text-center md:text-left
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    // Entspricht md:text-left
+    text-align: left;
+  }
+}
+
+.copyright-text {
+  // Entspricht text-sm
+  font-size: 0.875rem; // 14px
+}
+
+.footer-links {
+  // Entspricht flex gap-6
+  display: flex;
+  gap: 1.5rem; // gap-6 (24px)
+}
+
+.footer-link {
+  // Entspricht text-sm hover:text-blue-400 transition-colors
+  font-size: 0.875rem; // text-sm
+  transition: color 300ms ease; // transition-colors
+
+  &:hover {
+    color: $hover-color; // hover:text-blue-400
+  }
+}

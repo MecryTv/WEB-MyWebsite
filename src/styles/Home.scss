@@ -1,0 +1,82 @@
+// === SASS-Variablen ===
+$primary-blue: #2563eb; // entspricht text-blue-600 (dunkler)
+$secondary-blue: #3b82f6; // entspricht bg-blue-500 (heller)
+$button-hover-blue: #1d4ed8; // entspricht hover:bg-blue-700
+$text-gray-700: #4b5563;
+$text-gray-800: #1f2937;
+$bg-white: #ffffff;
+$border-color: #e5e7eb; // hellgrauer Rand
+$breakpoint-sm: 640px;
+
+.home-page {
+  // Entspricht min-h-screen flex flex-col items-center justify-center p-4
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; // p-4
+}
+
+.headline-section {
+  // Entspricht text-center mb-10
+  text-align: center;
+  margin-bottom: 2.5rem; // mb-10
+}
+
+.main-title {
+  // Entspricht text-5xl font-extrabold text-blue-600 mb-2
+  font-size: 3rem; // text-5xl
+  font-weight: 800; // font-extrabold
+  color: $primary-blue;
+  margin-bottom: 0.5rem; // mb-2
+}
+
+.subtitle {
+  // Entspricht text-xl text-gray-700
+  font-size: 1.25rem; // text-xl
+  color: $text-gray-700;
+}
+
+.primary-button {
+  // Entspricht px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md
+  padding: 0.75rem 1.5rem; // px-6 py-3
+  background-color: $secondary-blue;
+  color: #00FFF0;
+  font-weight: 600; // font-semibold
+  border-radius: 0.5rem; // rounded-lg
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // shadow-md
+
+  // Entspricht transition duration-300 transform hover:scale-105
+  transition: background-color 300ms ease, transform 300ms ease;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    background-color: $button-hover-blue; // hover:bg-blue-700
+    transform: scale(1.05); // hover:scale-105
+  }
+}
+
+.info-card {
+  // Entspricht mt-10 p-4 border rounded-xl shadow-lg w-full max-w-md bg-white
+  margin-top: 2.5rem; // mt-10
+  padding: 1rem; // p-4
+  border: 1px solid $border-color; // border
+  border-radius: 0.75rem; // rounded-xl
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); // shadow-lg
+  width: 100%;
+  max-width: 28rem; // max-w-md (448px)
+  background-color: $bg-white;
+}
+
+.info-text {
+  // Entspricht text-sm sm:text-base text-gray-800
+  color: $text-gray-800;
+  font-size: 0.875rem; // text-sm (14px)
+
+  @media (min-width: $breakpoint-sm) {
+    // Entspricht sm:text-base
+    font-size: 1rem; // 16px
+  }
+}

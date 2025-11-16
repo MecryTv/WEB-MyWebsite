@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -8,8 +9,23 @@ import CodeZero from './components/CodeZero';
 import Contact from './components/Contact';
 import Imprint from './components/Imprint';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
+
     return (
         <Router>
             <div className="min-h-screen bg-gray-50 flex flex-col">

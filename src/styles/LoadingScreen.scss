@@ -1,0 +1,55 @@
+// Variables (Optional, but good practice in Sass)
+$primary-bg: #1a202c; // entspricht bg-gray-900
+$text-color: #ffffff;
+$secondary-text: #a0aec0; // entspricht text-gray-400
+$spinner-color: #3b82f6; // entspricht border-blue-500
+$spinner-size: 16px;
+
+.loading-container {
+  // Entspricht flex items-center justify-center min-h-screen bg-gray-900 text-white
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $primary-bg;
+  color: $text-color;
+}
+
+.loading-content {
+  // Entspricht text-center
+  text-align: center;
+}
+
+.spinner {
+  // Entspricht animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid mx-auto mb-4
+  display: block;
+  width: 4rem; // Entspricht h-16 / w-16 (16 * 0.25rem = 4rem)
+  height: 4rem;
+  margin: 0 auto 1rem auto; // Entspricht mx-auto mb-4
+
+  border: 4px solid transparent;
+  border-top-color: $spinner-color;
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+}
+
+.title {
+  // Entspricht text-2xl font-semibold
+  font-size: 1.5rem; // Entspricht text-2xl
+  font-weight: 600; // Entspricht font-semibold
+}
+
+.message {
+  // Entspricht text-gray-400
+  color: $secondary-text;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
