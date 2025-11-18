@@ -1,0 +1,124 @@
+.privacy-section {
+  min-height: 100vh;
+  background: #0A0A0A;
+  color: var(--weiss);
+  padding: 8rem 2rem 4rem;
+
+  .privacy-content {
+    max-width: 900px;
+    margin: 0 auto;
+
+    .privacy-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(to right, var(--hellblau), var(--akzent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.3));
+    }
+
+    .privacy-block {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: rgba(30, 30, 30, 0.5);
+      border-radius: 12px;
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: rgba(0, 217, 255, 0.2);
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--hellblau);
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--akzent);
+        margin-bottom: 0.75rem;
+        margin-top: 1.5rem;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--grau);
+        margin-bottom: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .privacy-link {
+        color: var(--hellblau);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        word-break: break-all;
+
+        &:hover {
+          color: var(--akzent);
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .privacy-footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 217, 255, 0.1);
+      text-align: center;
+
+      p {
+        font-size: 0.875rem;
+        color: rgba(139, 139, 139, 0.7);
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .privacy-section {
+    padding: 6rem 1.5rem 3rem;
+
+    .privacy-content {
+      .privacy-title {
+        font-size: 2.5rem;
+      }
+
+      .privacy-block {
+        padding: 1.5rem;
+
+        h2 {
+          font-size: 1.25rem;
+        }
+
+        h3 {
+          font-size: 1.1rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
