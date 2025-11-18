@@ -1,29 +1,72 @@
 :root {
-    --hellblau: #00D9FF;
-    --hellblau-glow: #4DFFFF;
-    --grau: #8B8B8B;
-    --dunkelgrau: #1E1E1E;
-    --sehr-dunkel: #0A0A0A;
-    --weiss: #FFFFFF;
-    --akzent: #00FFF0;
+  --hellblau: #00D9FF;
+  --hellblau-glow: #4DFFFF;
+  --grau: #8B8B8B;
+  --dunkelgrau: #1E1E1E;
+  --sehr-dunkel: #0A0A0A;
+  --weiss: #FFFFFF;
+  --akzent: #00FFF0;
+  --header-height: 80px;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@layer base {
-    body {
-        font-family: 'Inter', 'Segoe UI', sans-serif;
-        background: var(--sehr-dunkel);
-        color: var(--weiss);
-        transform: translate3d(0, 0, 0);
-        @apply overflow-x-hidden leading-relaxed;
-    }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: var(--sehr-dunkel);
+  color: var(--weiss);
+  overflow-x: hidden;
+  line-height: 1.6;
+  padding-top: var(--header-height);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background: var(--sehr-dunkel);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sehr-dunkel);
+  border-left: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+                  to bottom,
+                  var(--hellblau),
+                  var(--akzent)
+  );
+  border-radius: 10px;
+  border: 2px solid var(--sehr-dunkel);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+                  to bottom,
+                  var(--hellblau-glow),
+                  var(--hellblau)
+  );
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.8);
+  border: 2px solid rgba(0, 217, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--akzent);
+  box-shadow: 0 0 40px rgba(0, 255, 240, 1);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hellblau) var(--sehr-dunkel);
 }
