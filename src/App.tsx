@@ -12,30 +12,19 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import LoadingScreen from './components/LoadingScreen';
 import WaveDivider from './components/WaveDivider';
 
-function ScrollToSection() {
+function ScrollToTop() {
     const location = useLocation();
 
     useEffect(() => {
-        if (location.pathname === '/') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
-        }
-
-        const sectionId = location.pathname.slice(1);
-        const element = document.getElementById(sectionId);
-
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }, [location]);
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
 
     return null;
 }
-
 function MainContent() {
     return (
         <>
-            <ScrollToSection />
+            <ScrollToTop />
             <div className="min-h-screen bg-gray-50 flex flex-col">
                 <Header />
 
@@ -44,28 +33,24 @@ function MainContent() {
                         <Home />
                     </section>
 
-                    {/* Welle: Schwarz (Home) → Grau (About) */}
                     <WaveDivider topColor="#0A0A0A" bottomColor="#1E1E1E" />
 
                     <section id="about">
                         <About />
                     </section>
 
-                    {/* Welle: Grau (About) → Schwarz (Skills) */}
                     <WaveDivider topColor="#1E1E1E" bottomColor="#0A0A0A" />
 
                     <section id="skills">
                         <Skills />
                     </section>
 
-                    {/* Welle: Schwarz (Skills) → Grau (CodeZero) */}
                     <WaveDivider topColor="#0A0A0A" bottomColor="#1E1E1E" />
 
                     <section id="codezero">
                         <CodeZero />
                     </section>
 
-                    {/* Welle: Grau (CodeZero) → Schwarz (Contact) */}
                     <WaveDivider topColor="#1E1E1E" bottomColor="#0A0A0A" />
 
                     <section id="contact">
@@ -105,6 +90,7 @@ function App() {
 
                 <Route path="/imprint" element={
                     <div className="min-h-screen bg-gray-50 flex flex-col">
+                        <ScrollToTop />
                         <Header />
                         <main className="flex-grow">
                             <Imprint />
@@ -114,6 +100,7 @@ function App() {
                 } />
                 <Route path="/privacy" element={
                     <div className="min-h-screen bg-gray-50 flex flex-col">
+                        <ScrollToTop />
                         <Header />
                         <main className="flex-grow">
                             <PrivacyPolicy />
