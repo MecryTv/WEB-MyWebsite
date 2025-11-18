@@ -1,0 +1,103 @@
+.imprint-section {
+  min-height: 100vh;
+  background: #0A0A0A;
+  color: var(--weiss);
+  padding: 8rem 2rem 4rem;
+
+  .imprint-content {
+    max-width: 900px;
+    margin: 0 auto;
+
+    .imprint-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(to right, var(--hellblau), var(--akzent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.3));
+    }
+
+    .imprint-block {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: rgba(30, 30, 30, 0.5);
+      border-radius: 12px;
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: rgba(0, 217, 255, 0.2);
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--hellblau);
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--grau);
+        margin-bottom: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .imprint-link {
+        color: var(--hellblau);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        word-break: break-all;
+
+        &:hover {
+          color: var(--akzent);
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .imprint-footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 217, 255, 0.1);
+      text-align: center;
+
+      p {
+        font-size: 0.875rem;
+        color: rgba(139, 139, 139, 0.7);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .imprint-section {
+    padding: 6rem 1.5rem 3rem;
+
+    .imprint-content {
+      .imprint-title {
+        font-size: 2.5rem;
+      }
+
+      .imprint-block {
+        padding: 1.5rem;
+
+        h2 {
+          font-size: 1.25rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
