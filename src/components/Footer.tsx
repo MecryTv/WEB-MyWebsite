@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
                 <div className="footer-content">
                     <div className="copyright-area">
                         <p className="copyright-text">
-                            © {new Date().getFullYear()} Dein Name. Alle Rechte vorbehalten.
+                            © {new Date().getFullYear()} MecryTv. All rights reserved.
                         </p>
                     </div>
 
@@ -18,13 +18,13 @@ const Footer: React.FC = () => {
                             to="/imprint"
                             className="footer-link"
                         >
-                            Impressum
+                            Imprint
                         </Link>
                         <Link
                             to="/privacy"
                             className="footer-link"
                         >
-                            Datenschutz
+                            Privacy Policy
                         </Link>
                     </div>
                 </div>
