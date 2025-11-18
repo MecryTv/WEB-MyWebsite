@@ -19,6 +19,11 @@
         font-family: 'Inter', 'Segoe UI', sans-serif;
         background: var(--sehr-dunkel);
         color: var(--weiss);
+        transform: translate3d(0, 0, 0);
         @apply overflow-x-hidden leading-relaxed;
     }
+}
+
+html {
+  scroll-behavior: smooth;
 }

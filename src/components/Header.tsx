@@ -6,7 +6,7 @@ const Header: React.FC = () => {
     const activeLinkClassName = "active-nav-link";
 
     return (
-        <header className="main-header">
+        <header id="main-header" className="main-header">
             <nav className="header-nav">
                 <Link
                     to="/"
