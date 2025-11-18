@@ -5,7 +5,7 @@ import About from '../components/About';
 import Skills from '../components/Skills';
 import CodeZero from '../components/CodeZero';
 import Contact from '../components/Contact';
-import WaveDivider from '../components/WaveDivider';
+import WaveDivider from '../utils/WaveDivider.tsx';
 import ScrollToSection from '../utils/ScrollToSection';
 
 export default function DefaultLayout() {
