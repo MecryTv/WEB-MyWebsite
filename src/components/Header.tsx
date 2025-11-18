@@ -16,7 +16,6 @@ const Header: React.FC = () => {
                 </Link>
 
                 <div className="nav-links">
-                    {/* NavLink setzt die 'active-nav-link' Klasse, wenn der Pfad übereinstimmt */}
                     <NavLink
                         to="/"
                         className={({ isActive }) =>

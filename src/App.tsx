@@ -12,6 +12,26 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import LoadingScreen from './components/LoadingScreen';
 import WaveDivider from './components/WaveDivider';
 
+function ScrollToSection() {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        const sectionId = location.pathname.slice(1);
+        const element = document.getElementById(sectionId);
+
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [location]);
+
+    return null;
+}
+
 function ScrollToTop() {
     const location = useLocation();
 
@@ -21,11 +41,13 @@ function ScrollToTop() {
 
     return null;
 }
+
 function MainContent() {
     return (
         <>
-            <ScrollToTop />
+            <ScrollToSection />
             <div className="min-h-screen bg-gray-50 flex flex-col">
+                <ScrollToTop />
                 <Header />
 
                 <main className="flex-grow">
@@ -90,9 +112,9 @@ function App() {
 
                 <Route path="/imprint" element={
                     <div className="min-h-screen bg-gray-50 flex flex-col">
-                        <ScrollToTop />
                         <Header />
                         <main className="flex-grow">
+                            <ScrollToTop />
                             <Imprint />
                         </main>
                         <Footer />
@@ -100,9 +122,9 @@ function App() {
                 } />
                 <Route path="/privacy" element={
                     <div className="min-h-screen bg-gray-50 flex flex-col">
-                        <ScrollToTop />
                         <Header />
                         <main className="flex-grow">
+                            <ScrollToTop />
                             <PrivacyPolicy />
                         </main>
                         <Footer />
