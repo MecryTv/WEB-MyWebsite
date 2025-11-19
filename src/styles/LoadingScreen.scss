@@ -17,7 +17,7 @@ $spinner-size: 16px;
   right: 0;
   bottom: 0;
   z-index: 9999;
-  overflow: hidden; // Verhindert Scrolling im Loading Screen
+  overflow: hidden;
 }
 
 .loading-content {

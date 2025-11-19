@@ -1,6 +1,6 @@
 import React, { useContext, useState, useCallback, type ReactNode } from 'react';
 import '../styles/ToastContext.scss';
-import { ToastContext, type ToastType, type ToastState } from './ToastTypes';
+import { ToastContext, type ToastType, type ToastState } from '../hooks/ToastTypes.ts';
 
 const ToastIcon: React.FC<{ type: ToastType }> = ({ type }) => {
     switch (type) {

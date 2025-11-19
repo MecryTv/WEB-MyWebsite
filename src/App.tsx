@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import LoadingScreen from './components/LoadingScreen';
 import AppRouter from './AppRouter';
 
-
 function App() {
     const [isLoading, setIsLoading] = useState(true);
 
