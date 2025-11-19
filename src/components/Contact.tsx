@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import emailjs from '@emailjs/browser';
 import "../styles/Contact.scss";
+import { useToast } from '../utils/ToastContext.tsx';
 
 const isValidEmail = (email: string) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -9,6 +10,7 @@ const isValidEmail = (email: string) => {
 
 const Contact: React.FC = () => {
     const form = useRef<HTMLFormElement>(null);
+    const { showToast } = useToast();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -18,20 +20,6 @@ const Contact: React.FC = () => {
     });
 
     const [isSending, setIsSending] = useState(false);
-
-    const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
-        show: false,
-        message: '',
-        type: 'success'
-    });
-
-    const showToast = (message: string, type: 'success' | 'error') => {
-        setToast({ show: true, message, type });
-
-        setTimeout(() => {
-            setToast(prev => ({ ...prev, show: false }));
-        }, 3000);
-    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
@@ -44,7 +32,7 @@ const Contact: React.FC = () => {
         e.preventDefault();
 
         if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
-            showToast('Please fill all Fields', 'error');
+            showToast('Please fill all Fields', 'warn');
             return;
         }
 
@@ -65,7 +53,7 @@ const Contact: React.FC = () => {
         )
             .then((result) => {
                 console.log(result.text);
-                showToast('Message Successfully send', 'success');
+                showToast('Message Successfully Sent', 'success');
 
                 setFormData({
                     name: '',
@@ -75,7 +63,7 @@ const Contact: React.FC = () => {
                 });
             }, (error) => {
                 console.log(error.text);
-                showToast('Please try again later', 'error');
+                showToast('Please try again Later', 'error');
             })
             .finally(() => {
                 setIsSending(false);
@@ -84,23 +72,11 @@ const Contact: React.FC = () => {
 
     return (
         <div className="contact-section">
-            {/* TOAST MESSAGE CONTAINER */}
-            <div className={`toast-notification ${toast.show ? 'show' : ''} ${toast.type}`}>
-                <div className="toast-icon">
-                    {toast.type === 'success' ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                    )}
-                </div>
-                <span>{toast.message}</span>
-            </div>
-
             <div className="contact-container">
                 <div className="contact-left">
                     <h2 className="contact-title">Let's Connect</h2>
                     <p className="contact-subtitle">
-                        Hast du eine Idee oder ein Projekt? Lass uns darüber sprechen!
+                        Contact me on Discord, GitHub, or send me an email using the form below.
                     </p>
 
                     <div className="contact-info">
@@ -181,7 +157,6 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="subject">Subject *</label>
                             <input
@@ -194,7 +169,6 @@ const Contact: React.FC = () => {
                                 required
                             />
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="message">Message *</label>
                             <textarea
@@ -207,7 +181,6 @@ const Contact: React.FC = () => {
                                 required
                             />
                         </div>
-
                         <button
                             type="submit"
                             className="submit-button"
