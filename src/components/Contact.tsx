@@ -1,13 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 import "../styles/Contact.scss";
 
+const isValidEmail = (email: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+};
+
 const Contact: React.FC = () => {
+    const form = useRef<HTMLFormElement>(null);
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         subject: '',
         message: ''
     });
+
+    const [isSending, setIsSending] = useState(false);
+
+    const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
+        show: false,
+        message: '',
+        type: 'success'
+    });
+
+    const showToast = (message: string, type: 'success' | 'error') => {
+        setToast({ show: true, message, type });
+
+        setTimeout(() => {
+            setToast(prev => ({ ...prev, show: false }));
+        }, 3000);
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
@@ -16,35 +40,67 @@ const Contact: React.FC = () => {
         });
     };
 
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-            alert('Bitte fülle alle Felder aus!');
+        if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
+            showToast('Please fill all Fields', 'error');
             return;
         }
 
-        const mailtoLink = `mailto:Contact@mecrytv.de?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-            `Name: ${formData.name}\nEmail: ${formData.email}\n\nNachricht:\n${formData.message}`
-        )}`;
+        if (!isValidEmail(formData.email)) {
+            showToast('Please enter a valid Email', 'error');
+            return;
+        }
 
-        window.location.href = mailtoLink;
+        if (!form.current) return;
 
-        setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-        });
+        setIsSending(true);
+
+        emailjs.sendForm(
+            import.meta.env.VITE_SERVICE_ID as string,
+            import.meta.env.VITE_TEMPLATE_ID as string,
+            form.current,
+            import.meta.env.VITE_PUBLIC_KEY as string
+        )
+            .then((result) => {
+                console.log(result.text);
+                showToast('Message Successfully send', 'success');
+
+                setFormData({
+                    name: '',
+                    email: '',
+                    subject: '',
+                    message: ''
+                });
+            }, (error) => {
+                console.log(error.text);
+                showToast('Please try again later', 'error');
+            })
+            .finally(() => {
+                setIsSending(false);
+            });
     };
 
     return (
         <div className="contact-section">
+            {/* TOAST MESSAGE CONTAINER */}
+            <div className={`toast-notification ${toast.show ? 'show' : ''} ${toast.type}`}>
+                <div className="toast-icon">
+                    {toast.type === 'success' ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    )}
+                </div>
+                <span>{toast.message}</span>
+            </div>
+
             <div className="contact-container">
                 <div className="contact-left">
                     <h2 className="contact-title">Let's Connect</h2>
                     <p className="contact-subtitle">
-                        Write me an email or reach out via GitHub or Discord.
+                        Hast du eine Idee oder ein Projekt? Lass uns darüber sprechen!
                     </p>
 
                     <div className="contact-info">
@@ -98,7 +154,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="contact-right">
-                    <div className="contact-form">
+                    <form className="contact-form" ref={form} onSubmit={sendEmail} noValidate>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="name">Name *</label>
@@ -147,23 +203,25 @@ const Contact: React.FC = () => {
                                 value={formData.message}
                                 onChange={handleChange}
                                 rows={6}
-                                placeholder="Wrote your message here..."
+                                placeholder="Write your message here..."
                                 required
                             />
                         </div>
 
                         <button
-                            type="button"
+                            type="submit"
                             className="submit-button"
-                            onClick={handleSubmit}
+                            disabled={isSending}
                         >
-                            <span>Send Message</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
+                            <span>{isSending ? 'Sending...' : 'Send Message'}</span>
+                            {!isSending && (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            )}
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
