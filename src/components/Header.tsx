@@ -12,7 +12,7 @@ const Header: React.FC = () => {
                     to="/"
                     className="logo-link"
                 >
-                    MecryTv Portfolio
+                    Portfolio
                 </Link>
 
                 <div className="nav-links">

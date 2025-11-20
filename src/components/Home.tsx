@@ -44,7 +44,7 @@ const Home: React.FC = () => {
                 </div>
 
                 <p className="description">
-                    Crafting innovative digital experiences with modern technologies.
+                    Building modern and unique software applications with passion.
                     <br />
                     Transforming ideas into elegant, functional solutions.
                 </p>

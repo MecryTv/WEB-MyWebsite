@@ -27,18 +27,6 @@ $breakpoint-md: 768px;
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(100px, -100px) scale(1.1);
-  }
-  66% {
-    transform: translate(-50px, 50px) scale(0.9);
-  }
-}
-
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
@@ -57,30 +45,6 @@ $breakpoint-md: 768px;
   padding: 2rem;
   position: relative;
   overflow: hidden;
-
-  .bg-circle {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-
-    &.bg-circle-1 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
-      top: -250px;
-      left: -250px;
-      animation: float 20s ease-in-out infinite;
-    }
-
-    &.bg-circle-2 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(0, 255, 240, 0.1) 0%, transparent 70%);
-      bottom: -200px;
-      right: -200px;
-      animation: float 25s ease-in-out infinite reverse;
-    }
-  }
 
   .home-content {
     max-width: 1200px;
