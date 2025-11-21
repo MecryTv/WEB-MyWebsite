@@ -55,7 +55,7 @@
         color: var(--hellblau);
         text-decoration: none;
         transition: all 0.3s ease;
-        word-break: break-all;
+        word-break: break-word;
 
         &:hover {
           color: var(--akzent);
@@ -85,6 +85,7 @@
     .imprint-content {
       .imprint-title {
         font-size: 2.5rem;
+        margin-bottom: 2rem;
       }
 
       .imprint-block {
@@ -93,10 +94,23 @@
         h2 {
           font-size: 1.25rem;
         }
+      }
+    }
+  }
+}
 
-        p {
-          font-size: 0.95rem;
-        }
+@media (max-width: 480px) {
+  .imprint-section {
+    padding: 5rem 1rem 2rem;
+
+    .imprint-content {
+      .imprint-title {
+        font-size: 2rem;
+      }
+
+      .imprint-block {
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
       }
     }
   }
