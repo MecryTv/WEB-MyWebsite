@@ -2,8 +2,6 @@ $primary-blue: #00D9FF;
 $accent-cyan: #00FFF0;
 $text-gray: #8B8B8B;
 $dark-bg: #0A0A0A;
-$breakpoint-sm: 640px;
-$breakpoint-md: 768px;
 
 @keyframes fadeInDown {
   from {
@@ -42,7 +40,7 @@ $breakpoint-md: 768px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem);
   position: relative;
   overflow: hidden;
 
@@ -55,50 +53,48 @@ $breakpoint-md: 768px;
   }
 
   .greeting-text {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-size: clamp(1rem, 3vw, 1.5rem);
     color: $primary-blue;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: clamp(0.5rem, 3vw, 1rem);
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: clamp(2px, 3vw, 3px);
     animation: fadeInDown 1s ease-out;
   }
 
   .main-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2rem, 9vw, 6rem);
     font-weight: 900;
     background: linear-gradient(135deg, $primary-blue 0%, $accent-cyan 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
     line-height: 1.2;
-    letter-spacing: -3px;
+    letter-spacing: clamp(-1px, -0.1vw, -3px);
     animation: fadeInUp 1s ease-out 0.2s both;
     filter: drop-shadow(0 0 40px rgba(0, 217, 255, 0.5));
-
-    @media (max-width: $breakpoint-md) {
-      letter-spacing: -1px;
-    }
+    word-break: break-word;
   }
 
   .floating-role-container {
-    height: 80px;
+    height: clamp(60px, 15vw, 80px);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 3rem;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
     position: relative;
 
     .floating-role {
       position: absolute;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-size: clamp(1rem, 5vw, 2.5rem);
       font-weight: 700;
       color: $text-gray;
       opacity: 0;
       transform: translateY(20px) scale(0.9);
       transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
       text-shadow: none;
+      padding: 0 1rem;
 
       &.active {
         opacity: 1;
@@ -109,16 +105,16 @@ $breakpoint-md: 768px;
   }
 
   .description {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(0.9rem, 3vw, 1.25rem);
     color: $text-gray;
     max-width: 700px;
-    margin: 0 auto 3rem;
+    margin: 0 auto clamp(2rem, 5vw, 3rem);
     line-height: 1.8;
     animation: fadeInUp 1s ease-out 0.4s both;
   }
 
   .scroll-indicator {
-    margin-top: 5rem;
+    margin-top: clamp(3rem, 5vw, 5rem);
     animation: bounce 2s ease-in-out infinite;
     color: $primary-blue;
     opacity: 0.7;
@@ -126,53 +122,8 @@ $breakpoint-md: 768px;
     svg {
       display: block;
       margin: 0 auto;
-    }
-  }
-}
-
-@media (max-width: $breakpoint-md) {
-  .home-page {
-    padding: 2rem 1rem;
-
-    .cta-buttons {
-      gap: 1rem;
-
-      button {
-        padding: 0.875rem 2rem;
-        font-size: 1rem;
-      }
-    }
-
-    .scroll-indicator {
-      margin-top: 3rem;
-    }
-  }
-}
-
-@media (max-width: $breakpoint-sm) {
-  .home-page {
-    .greeting-text {
-      letter-spacing: 2px;
-    }
-
-    .floating-role-container {
-      height: 60px;
-      margin-bottom: 2rem;
-    }
-
-    .description {
-      margin-bottom: 2rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      align-items: stretch;
-
-      button {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
+      width: clamp(24px, 5vw, 30px);
+      height: clamp(24px, 5vw, 30px);
     }
   }
 }

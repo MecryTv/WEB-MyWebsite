@@ -1,9 +1,8 @@
-// SCSS Variablen für die Farben basierend auf den Inline-Styles
 $dark-background: #0A0A0A;
 $text-color: #FFFFFF;
 $secondary-text: #8B8B8B;
-$primary-blue: #00D9FF; // Entspricht --hellblau
-$accent-cyan: #00FFF0;  // Entspricht --akzent
+$primary-blue: #00D9FF;
+$accent-cyan: #00FFF0;
 $card-background: rgba(30, 30, 30, 0.5);
 $border-color: rgba(0, 217, 255, 0.1);
 $dark-bar: rgba(10, 10, 10, 0.8);
@@ -11,59 +10,58 @@ $dark-bar: rgba(10, 10, 10, 0.8);
 .skills-section {
   min-height: 100vh;
   background: $dark-background;
-  padding: 4rem 2rem;
+  padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem);
   color: $text-color;
 
   .skills-content-wrapper {
     max-width: 1400px;
     margin: 0 auto;
 
-    // Header
     .header-container {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: clamp(2rem, 8vw, 4rem);
 
       .skills-title {
-        font-size: 3.5rem;
+        font-size: clamp(2rem, 8vw, 3.5rem);
         font-weight: 800;
         background: linear-gradient(to right, $primary-blue, $accent-cyan);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.3));
-        margin-bottom: 1rem;
+        margin-bottom: clamp(0.5rem, 2vw, 1rem);
       }
 
       .skills-subtitle {
-        font-size: 1.25rem;
+        font-size: clamp(0.9rem, 3vw, 1.25rem);
         color: $secondary-text;
         max-width: 600px;
         margin: 0 auto;
       }
     }
 
-    // Category Filter
     .category-filter {
       display: flex;
-      gap: 1rem;
+      gap: clamp(0.5rem, 2vw, 1rem);
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 3rem;
+      margin-bottom: clamp(2rem, 5vw, 3rem);
 
       .category-button {
-        padding: 0.75rem 1.5rem;
+        padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
         background: $card-background;
         color: $text-color;
         border: 1px solid $border-color;
         border-radius: 12px;
-        font-size: 1rem;
+        font-size: clamp(0.75rem, 2vw, 1rem);
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: clamp(0.25rem, 2vw, 0.5rem);
         box-shadow: none;
+        white-space: nowrap;
 
         &:hover {
           border-color: rgba($primary-blue, 0.4);
@@ -75,72 +73,67 @@ $dark-bar: rgba(10, 10, 10, 0.8);
           color: $dark-background;
           border: none;
           box-shadow: 0 0 30px rgba($primary-blue, 0.4);
-          transform: translateY(0); // Active Button sollte nicht bei Hover verschoben werden
         }
       }
     }
 
-    // Skills Grid
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 80vw, 350px), 1fr));
+      gap: clamp(1rem, 3vw, 1.5rem);
+
+      @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+      }
 
       .skill-item {
         background: $card-background;
-        padding: 1.5rem;
+        padding: clamp(1rem, 3vw, 1.5rem);
         border-radius: 16px;
-        // Border Farbe wird im React-Code gesetzt (skill.color)
         border: 1px solid $border-color;
         transition: all 0.3s ease;
         cursor: pointer;
-        transform: translateY(0); // Initial
-        box-shadow: none; // Initial
-
-        // Hover Styles werden dynamisch in React gesetzt, hier nur die Basis-Transition
-        // Die dynamische Farbgebung erfordert Inline-Styles oder CSS-in-JS,
-        // hier setzen wir nur die allgemeine Hover-Logik (wenn nicht dynamisch)
-        // Aber da React die Logik enthält, lassen wir es bei den Basis-Styles und Transition.
 
         .skill-header {
           display: flex;
           justify-content: space-between;
-          align-items: center;
-          margin-bottom: 1rem;
+          align-items: flex-start;
+          gap: 1rem;
+          margin-bottom: clamp(0.75rem, 2vw, 1rem);
+          flex-wrap: wrap;
 
           .skill-name {
-            font-size: 1.25rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.25rem);
             font-weight: 700;
             color: $text-color;
             margin-bottom: 0.25rem;
           }
 
           .skill-category-title {
-            font-size: 0.75rem;
-            // Farbe wird dynamisch in React gesetzt (skill.color)
+            font-size: clamp(0.6rem, 1.5vw, 0.75rem);
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
           }
 
           .skill-level-percentage {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             font-weight: 700;
-            // Farbe wird dynamisch in React gesetzt (skill.color)
+            min-width: 50px;
+            text-align: right;
           }
         }
 
         .skill-bar-container {
           width: 100%;
-          height: 8px;
+          height: clamp(6px, 1vw, 8px);
           background: $dark-bar;
           border-radius: 999px;
           overflow: hidden;
-          margin-bottom: 1rem;
+          margin-bottom: clamp(0.75rem, 2vw, 1rem);
 
           .skill-bar {
             height: 100%;
-            // Hintergrund- und Shadow-Farbe wird dynamisch in React gesetzt
             border-radius: 999px;
             transition: width 1s ease-out;
           }
@@ -149,39 +142,42 @@ $dark-bar: rgba(10, 10, 10, 0.8);
         .skill-years {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          font-size: 0.875rem;
+          gap: clamp(0.25rem, 1vw, 0.5rem);
+          font-size: clamp(0.75rem, 1.8vw, 0.875rem);
           color: $secondary-text;
+
+          svg {
+            width: clamp(14px, 2vw, 16px);
+            height: clamp(14px, 2vw, 16px);
+          }
         }
 
         .hover-badge {
-          margin-top: 1rem;
-          padding: 0.5rem 1rem;
-          // Hintergrund- und Textfarbe wird dynamisch in React gesetzt
+          margin-top: clamp(0.75rem, 2vw, 1rem);
+          padding: clamp(0.4rem, 2vw, 0.5rem) clamp(0.75rem, 2vw, 1rem);
           border-radius: 8px;
-          font-size: 0.875rem;
+          font-size: clamp(0.7rem, 1.8vw, 0.875rem);
           font-weight: 600;
           text-align: center;
         }
       }
     }
 
-    // Stats Summary
     .stats-summary {
-      margin-top: 4rem;
+      margin-top: clamp(2rem, 8vw, 4rem);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 80vw, 200px), 1fr));
+      gap: clamp(1rem, 3vw, 2rem);
 
       .stat-item {
         text-align: center;
-        padding: 2rem;
+        padding: clamp(1.5rem, 4vw, 2rem);
         background: $card-background;
         border-radius: 16px;
         border: 1px solid $border-color;
 
         .stat-value {
-          font-size: 3rem;
+          font-size: clamp(1.75rem, 5vw, 3rem);
           font-weight: 800;
           background: linear-gradient(to right, $primary-blue, $accent-cyan);
           -webkit-background-clip: text;
@@ -191,78 +187,8 @@ $dark-bar: rgba(10, 10, 10, 0.8);
 
         .stat-label {
           color: $secondary-text;
-          margin-top: 0.5rem;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 1500px) {
-  .skills-section {
-    .skills-content-wrapper {
-      max-width: 1200px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .skills-section {
-    padding: 2rem 1rem;
-
-    .skills-content-wrapper {
-      .header-container {
-        margin-bottom: 3rem;
-
-        .skills-title {
-          font-size: 2.5rem;
-        }
-
-        .skills-subtitle {
-          font-size: 1rem;
-        }
-      }
-
-      .category-filter {
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-
-        .category-button {
-          padding: 0.6rem 1.2rem;
-          font-size: 0.9rem;
-        }
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1rem;
-
-        .skill-item {
-          padding: 1rem;
-
-          .skill-header {
-            .skill-name {
-              font-size: 1.1rem;
-            }
-
-            .skill-level-percentage {
-              font-size: 1.25rem;
-            }
-          }
-        }
-      }
-
-      .stats-summary {
-        margin-top: 3rem;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-
-        .stat-item {
-          padding: 1.5rem 1rem;
-
-          .stat-value {
-            font-size: 2rem;
-          }
+          margin-top: clamp(0.25rem, 1vw, 0.5rem);
+          font-size: clamp(0.75rem, 2vw, 0.9rem);
         }
       }
     }
