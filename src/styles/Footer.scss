@@ -11,10 +11,10 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 2rem 5rem;
+  padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 8vw, 5rem);
 
-  @media (max-width: 768px) {
-    padding: 1.5rem 2rem;
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
   }
 }
 
@@ -23,40 +23,66 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
 
   @media (min-width: 768px) {
     flex-direction: row;
+    gap: 2rem;
   }
 }
 
 .copyright-area {
   text-align: center;
+  order: 2;
 
   @media (min-width: 768px) {
     text-align: left;
+    order: 1;
   }
 }
 
 .copyright-text {
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
   color: var(--grau);
   letter-spacing: 0.3px;
+  line-height: 1.5;
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 }
 
 .footer-links {
   display: flex;
-  gap: 2rem;
+  gap: clamp(1.5rem, 4vw, 2rem);
+  flex-wrap: wrap;
+  justify-content: center;
+  order: 1;
+
+  @media (min-width: 768px) {
+    order: 2;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1.25rem;
+    width: 100%;
+  }
 }
 
 .footer-link {
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
   color: var(--grau);
   text-decoration: none;
   position: relative;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
   font-weight: 500;
+  white-space: nowrap;
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 
   &::after {
     content: "";
@@ -75,5 +101,9 @@
     &::after {
       width: 100%;
     }
+  }
+
+  &:active {
+    color: var(--akzent);
   }
 }
