@@ -1,0 +1,44 @@
+name: Mirror to GitLab
+
+# Löst den Workflow bei jedem Push auf dem Hauptbranch aus
+on:
+  push:
+    branches:
+      - main # Oder 'master', falls Sie diesen Branch verwenden
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Holt den gesamten Verlauf
+
+      - name: Add Private Key for GitLab
+        # Fügt den Private Key zum SSH-Agent des Runners hinzu
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
+          
+      - name: Add GitLab Host to known_hosts
+        # Fügen Sie den Hostnamen zur known_hosts-Datei hinzu, um die SSH-Warnung zu umgehen
+        run: |
+          mkdir -p ~/.ssh
+          # Beachten Sie den SSH-Port 2222, den wir im Docker-Befehl festgelegt haben
+          echo "gitlab.mecry.de:[2222] ssh-rsa AAAAB3Nza..." >> ~/.ssh/known_hosts 
+          # Hinweis: Sie müssen den tatsächlichen Public Key Ihres GitLab-Servers hier einfügen, 
+          # oder das StrictHostKeyChecking temporär deaktivieren, was unsicherer ist.
+          # Für den ersten Test ist das Deaktivieren einfacher:
+          echo "Host gitlab.mecry.de" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "  Port 2222" >> ~/.ssh/config
+
+      - name: Push to GitLab Mirror
+        run: |
+          # Fügen Sie das GitLab-Repository als Remote hinzu
+          GITLAB_URL="ssh://git@gitlab.mecry.de:2222/MecryTv/web-mywebsite.git"
+          git remote add gitlab $GITLAB_URL
+          
+          # Pushen Sie alle Branches und Tags (Spiegelung)
+          git push gitlab --mirror
