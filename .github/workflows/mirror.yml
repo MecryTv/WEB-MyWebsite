@@ -36,9 +36,10 @@ jobs:
 
       - name: Push to GitLab Mirror
         run: |
-          # Fügen Sie das GitLab-Repository als Remote hinzu
           GITLAB_URL="ssh://git@gitlab.mecry.de:2222/MecryTv/web-mywebsite.git"
+          
           git remote add gitlab $GITLAB_URL
           
-          # Pushen Sie alle Branches und Tags (Spiegelung)
-          git push gitlab --mirror
+          # HIER DIE ÄNDERUNG: Pushen Sie NUR HEADS (Branches) und TAGS,
+          # wobei die problematischen versteckten Referenzen ignoriert werden.
+          git push gitlab 'refs/heads/*' 'refs/tags/*' --force
